@@ -1,6 +1,5 @@
 #ifndef LIST_H
 #define LIST_H
-
 typedef struct node
 {
 	struct node *next;
@@ -12,7 +11,7 @@ typedef struct node
 	{ \
 		node *new_node = malloc(sizeof(node)); \
 		new_node->data = malloc(sizeof(value)); \
-		*(TYPE*)(new_node->data) = value; \
+		*(TYPE*)new_node->data = value; \
 		new_node->next = head; \
 		return new_node; \
 	} \
@@ -35,8 +34,44 @@ typedef struct node
 		return head; \
 	} \
 
+#define ERASE_INIT(TYPE) \
+	node* TYPE ##_erase(node *head, TYPE value) \
+	{ \
+		if (*(TYPE*)head->data == value) \
+		{ \
+			node *ptr = head; \
+			head = head->next; \
+			free(ptr->data); \
+			free(ptr); \
+			return head; \
+		} \
+		\
+		node *ptr = head, *prev; \
+    	while (*(TYPE*)ptr->data != value) \
+    	{ \
+        	prev = ptr; \
+        	ptr = ptr->next; \
+    	} \
+    	prev->next = ptr->next; \
+		free(ptr->data); \
+    	free(ptr); \
+		\
+    	return head; \
+	} \
+
+/* linked list */
+void int_display(node *head); //test
+void float_display(node *head); // test
 unsigned int list_size(node *head);
-void int_display(node *head);
-void float_display(node *head);
+void free_list(node *head);
+/* linked list */
+
+/* circular linked list */
+void convert_to_circular(node *head);
+void c_int_display(node *head); //test
+void c_float_display(node *head); // test
+unsigned int list_size(node *head);
+void free_list(node *head);
+/* circular linked list */
 
 #endif

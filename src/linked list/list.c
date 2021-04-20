@@ -32,6 +32,18 @@ int main()
 
 	float_display(root_float);
 
+	ERASE_INIT(int);
+	ERASE_INIT(float);
+
+	int_erase(root_int, 1);
+	float_erase(root_float, 1.1f);
+
+	int_display(root_int);
+	float_display(root_float);
+
+	free_list(root_int);
+	free_list(root_float);
+
 	return 0;
 }
 
@@ -56,4 +68,16 @@ unsigned int list_size(node *head)
         count++;
 
     return count;
+}
+
+void free_list(node *head)
+{
+    node *ptr = head;
+    while (ptr)
+    {
+        node *temp = ptr;
+        ptr = ptr->next;
+		free(temp->data);
+        free(temp);
+    }
 }
