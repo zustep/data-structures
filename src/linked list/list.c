@@ -4,7 +4,7 @@
 
 int main()
 {
-	node *root_int = NULL, *root_float = NULL;
+	list *root_int = NULL, *root_float = NULL;
 
 	PUSH_FRONT_INIT(int);
 	PUSH_BACK_INIT(int);
@@ -12,38 +12,22 @@ int main()
 	root_int = int_push_front(root_int, 1);
 	root_int = int_push_front(root_int, 2);
 	root_int = int_push_front(root_int, 3);
-
-	root_int = int_push_back(root_int, 3);
-	root_int = int_push_back(root_int, 2);
-	root_int = int_push_back(root_int, 1);
-
 	int_display(root_int);
 
-	PUSH_FRONT_INIT(float);
-	PUSH_BACK_INIT(float);
-
-	root_float = float_push_front(root_float, 1.1f);
-	root_float = float_push_front(root_float, 2.2f);
-	root_float = float_push_front(root_float, 3.3f);
-
-	root_float = float_push_back(root_float, 3.3f);
-	root_float = float_push_back(root_float, 2.2f);
-	root_float = float_push_back(root_float, 1.1f);
-
-	float_display(root_float);
-
-	ERASE_INIT(int);
-	ERASE_INIT(float);
-
-	int_erase(root_int, 1);
-	float_erase(root_float, 1.1f);
-
-	int_display(root_int);
-	float_display(root_float);
-
-	free_list(root_int);
-	free_list(root_float);
-
+	convert_to_circular(root_int);
+	C_PUSH_FRONT_INIT(int);
+	C_PUSH_BACK_INIT(int);
+	C_ERASE_INIT(int);
+	root_int = int_c_push_front(root_int, 1337);
+	root_int = int_c_push_front(root_int, 1555);
+	root_int = int_c_push_back(root_int, 1488);
+	c_int_display(root_int);
+	root_int = int_c_erase(root_int, 1488);
+	root_int = int_c_erase(root_int, 1);
+	root_int = int_c_erase(root_int, 1337);
+	root_int = int_c_erase(root_int, 2);
+	root_int = int_c_erase(root_int, 3);
+	root_int = int_c_erase(root_int, 1555);
 	return 0;
 }
 
@@ -80,4 +64,63 @@ void free_list(node *head)
 		free(temp->data);
         free(temp);
     }
+}
+
+void convert_to_circular(node *head)
+{
+	node *ptr = head;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	
+	ptr->next = head;
+}
+
+void c_int_display(node *head)
+{
+	node *ptr = head;
+    do
+    {
+        printf("%d ", *(int*)ptr->data);
+        ptr = ptr->next;
+    } while (ptr != head);
+
+    printf("\n");
+}
+
+void c_float_display(node *head)
+{
+	node *ptr = head;
+    do
+    {
+        printf("%f ", *(float*)ptr->data);
+        ptr = ptr->next;
+    } while (ptr != head);
+
+    printf("\n");
+}
+
+void c_free_list(node *head)
+{
+	node *ptr = head;
+    do
+    {
+        node *temp = ptr;
+        ptr = ptr->next;
+		free(temp->data);
+        free(temp);
+    } while (ptr != head);
+}
+
+unsigned int c_list_size(node *head)
+{
+	unsigned int count = 0;
+
+    node *ptr = head;
+    do
+    {
+        count++;
+        ptr = ptr->next;
+    } while (ptr != head);
+    
+    return count;
 }
