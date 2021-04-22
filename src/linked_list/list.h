@@ -46,7 +46,7 @@ void free_list(node *head);
 #define ERASE_INIT(TYPE) 					\
 	node* TYPE ##_erase(node *head, TYPE value) 		\
 	{ 							\
-		if (*(TYPE*)head->data == value) {		\ 												\
+		if (*(TYPE*)head->data == value) {		\
 			node *ptr = head; 			\
 			head = head->next; 			\
 			free(ptr->data); 			\
@@ -55,7 +55,7 @@ void free_list(node *head);
 		} 						\
 								\
 		node *ptr = head, *prev; 			\
-    		while (*(TYPE*)ptr->data != value) { 		\ 												\
+    		while (*(TYPE*)ptr->data != value) { 		\
         		prev = ptr; 				\
         		ptr = ptr->next; 			\
     		} 						\
@@ -109,7 +109,7 @@ void c_free_list(node *head);
 #define C_ERASE_INIT(TYPE) 					\
 	node* TYPE ##_c_erase(node *head, TYPE value) 		\
 	{ 							\
-		if (*(TYPE*)head->data == value) { 		\ 												\
+		if (*(TYPE*)head->data == value) { 		\
 			node *ptr = head; 			\
 			while (ptr->next != head) 		\
 				ptr = ptr->next; 		\
@@ -120,7 +120,7 @@ void c_free_list(node *head);
 		} 						\
 								\
 		node *ptr = head, *prev = NULL; 		\
-		while (*(TYPE*)ptr->data != value) { 		\ 												\
+		while (*(TYPE*)ptr->data != value) { 		\
 			prev = ptr; 				\
 			ptr = ptr->next; 			\
 		} 						\
