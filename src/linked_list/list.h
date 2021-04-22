@@ -13,16 +13,16 @@ void float_display(node *head); // test
 unsigned int list_size(node *head);
 void free_list(node *head);
 
-#define PUSH_FRONT_INIT(TYPE) 							\
+#define PUSH_FRONT_INIT(TYPE) 					\
 	node* TYPE ##_push_front(node *head, TYPE value) 	\
-	{ 													\
-		node *new_node = malloc(sizeof(node)); 			\
-		new_node->data = malloc(sizeof(TYPE)); 			\
-		*(TYPE*)new_node->data = value; 				\
-		new_node->next = head; 							\
-		head = new_node;								\
-		return head;									\
-	} 													\
+	{ 							\
+		node *new_node = malloc(sizeof(node)); 		\
+		new_node->data = malloc(sizeof(TYPE)); 		\
+		*(TYPE*)new_node->data = value; 		\
+		new_node->next = head; 				\
+		head = new_node;				\
+		return head;					\
+	} 							\
 
 #define PUSH_BACK_INIT(TYPE) 							\
 	node* TYPE ##_push_back(node *head, TYPE value)	 	\
