@@ -8,12 +8,12 @@ typedef struct node
 }node, list;
 
 /* linked list */
-void int_display(node *head); //test
-void float_display(node *head); // test
+void list_int_display(node *head); //test
+void list_float_display(node *head); // test
 unsigned int list_size(node *head);
 void free_list(node *head);
 
-#define PUSH_FRONT_INIT(TYPE) 					\
+#define LIST_PUSH_FRONT_INIT(TYPE) 				\
 	node* TYPE ##_push_front(node *head, TYPE value) 	\
 	{ 							\
 		node *new_node = malloc(sizeof(node)); 		\
@@ -24,11 +24,11 @@ void free_list(node *head);
 		return head;					\
 	} 							\
 
-#define PUSH_BACK_INIT(TYPE) 					\
+#define LIST_PUSH_BACK_INIT(TYPE) 				\
 	node* TYPE ##_push_back(node *head, TYPE value)	 	\
 	{ 							\
 		node *new_node = malloc(sizeof(node));		\
-		new_node->data = malloc(sizeof(value)); 	\
+		new_node->data = malloc(sizeof(TYPE)); 		\
 		*(TYPE*)(new_node->data) = value; 		\
 		new_node->next = NULL; 				\
 								\
@@ -43,7 +43,7 @@ void free_list(node *head);
 		return head; 					\
 	} 							\
 
-#define ERASE_INIT(TYPE) 					\
+#define LIST_ERASE_INIT(TYPE) 					\
 	node* TYPE ##_erase(node *head, TYPE value) 		\
 	{ 							\
 		if (*(TYPE*)head->data == value) {		\
@@ -69,12 +69,12 @@ void free_list(node *head);
 
 /* circular linked list */
 void convert_to_circular(node *head);
-void c_int_display(node *head); //test
-void c_float_display(node *head); // test
+void clist_int_display(node *head); //test
+void clist_float_display(node *head); // test
 unsigned int c_list_size(node *head);
 void c_free_list(node *head);
 
-#define C_PUSH_FRONT_INIT(TYPE) 				\
+#define CLIST_PUSH_FRONT_INIT(TYPE) 				\
 	node* TYPE ##_c_push_front(node *head, TYPE value) 	\
 	{ 							\
 		node *new_node = malloc(sizeof(node)); 		\
@@ -90,7 +90,7 @@ void c_free_list(node *head);
     		return new_node; 				\
 	} 							\
 
-#define C_PUSH_BACK_INIT(TYPE) 					\
+#define CLIST_PUSH_BACK_INIT(TYPE) 				\
 	node* TYPE ##_c_push_back(node *head, TYPE value) 	\
 	{ 							\
 		node *new_node = malloc(sizeof(node)); 		\
@@ -106,7 +106,7 @@ void c_free_list(node *head);
 		return head; 					\
 	} 							\
 
-#define C_ERASE_INIT(TYPE) 					\
+#define CLIST_ERASE_INIT(TYPE) 					\
 	node* TYPE ##_c_erase(node *head, TYPE value) 		\
 	{ 							\
 		if (*(TYPE*)head->data == value) { 		\

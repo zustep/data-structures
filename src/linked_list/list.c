@@ -44,7 +44,7 @@ void convert_to_circular(node *head)
 	ptr->next = head;
 }
 
-void c_int_display(node *head)
+void clist_int_display(node *head)
 {
 	node *ptr = head;
     	do {
@@ -55,7 +55,7 @@ void c_int_display(node *head)
 	printf("\n");
 }
 
-void c_float_display(node *head)
+void clist_float_display(node *head)
 {
 	node *ptr = head;
     	do {
