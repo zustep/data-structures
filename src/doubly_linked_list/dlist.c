@@ -1,33 +1,6 @@
 #include <stdio.h>
 #include "dlist.h"
 
-int main(int argc, char *argv[])
-{
-	dlist *root = NULL;
-	DLIST_PUSH_FRONT_INIT(int);
-	DLIST_PUSH_BACK_INIT(int);
-	DLIST_ERASE_INIT(int);
-        CDLIST_PUSH_FRONT_INIT(int);
-        CDLIST_PUSH_BACK_INIT(int);
-        CDLIST_ERASE_INIT(int);
-	root = int_push_front(root, 1);
-	root = int_push_front(root, 2);
-	root = int_push_front(root, 3);
-	root = int_push_back(root, 1337);
-        convert_to_circular(root);
-        root = int_c_push_back(root, 1488);
-        root = int_c_push_front(root, 15555);
-        c_int_display(root);
-        root = int_c_erase(root, 1488);
-        c_int_display(root);
-        root = int_c_erase(root, 15555);
-        c_int_display(root);
-        root = int_c_erase(root, 2);
-        c_int_display(root);
-
-	return 0;
-}
-
 void dlist_int_display(dlist *head)
 {
 	for (dlist *ptr = head; ptr; ptr = ptr->next)
@@ -82,7 +55,6 @@ void c_int_display(dlist *head)
     
     printf("\n");
 }
-
 
 void c_free_dlist(dlist *head)
 {
