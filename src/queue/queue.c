@@ -1,24 +1,6 @@
 #include "queue.h"
 #include <stdio.h>
 
-/*int main(int argc, char *argv[])
-{
-        queue *q = init_queue();    
-        QUEUE_INSERT_INIT(int);
-        QUEUE_PEEK_INIT(int);
-        q = int_queue_insert(q,4); 
-        q = int_queue_insert(q,3);
-        q = int_queue_insert(q,2);                    
-        int_display(q);
-        printf("size = %d\n", queue_size(q));
-        printf("front = %d\n", int_queue_peek(q));
-        q = pop(q);
-        int_display(q);
-        free_queue(q);
-        return 0;
-}*/
-
-
 queue *init_queue()
 {
         queue *q = malloc(sizeof(queue));
