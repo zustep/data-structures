@@ -49,8 +49,8 @@ void int_display(queue *q)
     queue_node *ptr = q->front;
 
     do {
-        printf("%d ", *(int*)ptr->data);
-        ptr = ptr->next;
+                printf("%d ", *(int*)ptr->data);
+                ptr = ptr->next;
     } while (ptr != q->rear->next);
 
     printf("\n");
