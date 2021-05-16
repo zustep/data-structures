@@ -1,28 +1,6 @@
 #include "deque.h"
 #include <stdio.h>
 
-/*int main()
-{
-        DEQUE_INSERT_FRONT_INIT(int);
-        DEQUE_INSERT_BACK_INIT(int);
-        DEQUE_PEEK_BACK_INIT(int);
-        DEQUE_PEEK_FRONT_INIT(int);
-        deque *d = init_deque();
-
-        d = int_insert_front(d,1);
-        d = int_insert_front(d,2);
-        d = int_insert_front(d,3);
-        d = int_insert_front(d,4);
-        d = int_insert_front(d,5);
-
-        int_front_display(d);
-        d = pop_back(d);
-        d = pop_front(d);
-        int_front_display(d);
-
-        free_deque(d);
-}*/
-
 deque *init_deque()
 {
         deque *new_node = malloc(sizeof(deque));
