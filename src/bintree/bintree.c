@@ -9,17 +9,53 @@ int main()
         root = int_tree_insert(root, 2);
         root = int_tree_insert(root, 3);
 
-        preorder_traversal(root);
+        int_preorder_traversal(root);
         printf("\n");
+
+        printf("size = %d\n", tree_size(root));
+
+        delete_tree(root);
 
         return 0;
 }
 
-void preorder_traversal(tree *root)
+void int_preorder_traversal(tree *root)
 {
         if (root != NULL) {
-                preorder_traversal(root->right);
+                int_preorder_traversal(root->right);
                 printf("%d ", *(int*)root->data);
-                preorder_traversal(root->left);
+                int_preorder_traversal(root->left);
         }
+}
+
+unsigned int tree_size(tree *root)
+{
+        if (root == NULL)
+                return 0;
+        return tree_size(root->left) + tree_size(root->right) + 1;
+}
+
+void delete_tree(tree *root)
+{
+        if (root != NULL)
+        {
+                delete_tree(root->right);
+                delete_tree(root->left);
+                free(root->data);
+                free(root);
+        }
+}
+
+tree *min_element(tree *root)
+{
+        if (root == NULL || root->left == NULL)
+                return 0;
+        return min_element(root->left);
+}
+
+tree *max_element(tree *root)
+{
+        if (root == NULL || root->right == NULL)
+                return 0;
+        return max_element(root->right);
 }

@@ -10,14 +10,11 @@ typedef struct node
         struct node *right;
 }tree, node;
 
-tree *create_tree();
-tree *insert();
 tree *min_element();
 tree *max_element();
-unsigned int height();
-unsigned int tree_size();
-void delete_tree();
-void preorder_traversal(tree*);
+unsigned int tree_size(tree*);
+void delete_tree(tree*);
+void int_preorder_traversal(tree*);
 
 #define TREE_INSERT_INIT(TYPE)                                          \
         tree* TYPE ##_tree_insert(tree *root, TYPE value)               \
